@@ -12,9 +12,8 @@ class DAO():
         results = []
 
         cursor = conn.cursor(dictionary=True)
-        query = """SELECT MAX(latitude) as max_latitude, MAX(longitude) as max_longitude, 
-        MIN(latitude) as min_latitude, MIN(longitude) as min_longitude
-        FROM sighting"""
+        query = """SELECT MIN(s.Lat) as min_latitude, MAX(s.Lat) as max_latitude, MIN(s.Lng) as min_longitude, MAX(s.Lng) as max_longitude
+                FROM state s"""
 
         cursor.execute(query)
 
