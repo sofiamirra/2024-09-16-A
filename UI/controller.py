@@ -103,10 +103,48 @@ class Controller:
         top_archi = self._model.getTop5Archi()
         for arco in top_archi:
             self._view.txt_result1.controls.append(ft.Text(str(arco)))
+        self._view.btn_path.disabled = False
         self._view.update_page()
 
+
     def handle_path(self, e):
-            pass
+        path, score = self._model.getPercorso()
+
+        self._view.txt_result2.controls.clear()
+
+        if path is None or len(path) == 0:
+            self._view.txt_result2.controls.append(
+                ft.Text("Nessun percorso trovato", color="red")
+            )
+            self._view.update_page()
+            return
+
+        self._view.txt_result2.controls.append(
+            ft.Text(f"Punteggio totale del percorso: {score}", color="red")
+        )
+
+        self._view.txt_result2.controls.append(
+            ft.Text("Stati attraversati:")
+        )
+
+        for stato in path:
+            densita = self._model.getDensita(stato)
+            self._view.txt_result2.controls.append(
+                ft.Text(f"{stato} - densità: {densita:.4f}")
+            )
+
+        dettagli = self._model.getPathDetails(path)
+
+        self._view.txt_result2.controls.append(
+            ft.Text("Archi attraversati:")
+        )
+
+        for n1, n2, peso, distanza in dettagli:
+            self._view.txt_result2.controls.append(
+                ft.Text(f"{n1} --> {n2} | peso: {peso:.2f} | distanza: {distanza}")
+            )
+
+        self._view.update_page()
 
     def fill_ddshape(self):
         pass
