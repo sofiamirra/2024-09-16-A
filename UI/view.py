@@ -1,6 +1,5 @@
 import flet as ft
 
-
 class View(ft.UserControl):
     def __init__(self, page: ft.Page):
         super().__init__()
@@ -19,7 +18,6 @@ class View(ft.UserControl):
         self.txt_latitude: ft.TextField = None
         self.txt_longitude: ft.TextField = None
         self.ddshape: ft.Dropdown = None
-
         self.btn_graph = None
         self.btn_path = None
         # second row
@@ -36,7 +34,7 @@ class View(ft.UserControl):
         self.txt_longitude = ft.TextField(label="Longitude", hint_text="inserire una longitudine")
         self.ddshape = ft.Dropdown(label="Shape",
                                    hint_text="Forma da analizzare per gli avvistamenti.")
-        self._controller.fill_ddshape()
+        self._controller._fillDDShape()
 
         row1 = ft.Row([self.txt_latitude, self.txt_longitude, self.ddshape],
                       alignment=ft.MainAxisAlignment.SPACE_EVENLY)

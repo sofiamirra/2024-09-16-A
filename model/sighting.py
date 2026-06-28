@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime as dtime
 
-
 @dataclass
 class Sighting:
     id: int
